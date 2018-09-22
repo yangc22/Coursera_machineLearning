@@ -21,13 +21,30 @@ p = zeros(size(X, 1), 1);
 %       can use max(A, [], 2) to obtain the max for each row.
 %
 
+% number of features
+n = size(X, 2);
+% Form input layer first
+% a_1 : (n + 1) x m = 401 x m
+a_1 = X';
+a_1 = [ ones(1, m) ; a_1];
 
+% Theta1 : 25 x 401
+% z_2 : 25 x m
+z_2 = Theta1 * a_1;
+a_2 = sigmoid(z_2);
 
+% add bias
+% a_2 : 26 x m
+a_2 = [ones(1, m); a_2];
 
+% Theta2 : 10 x 26
+% z_3 : 10 x m
+% a_3 : 10 x m
+z_3 = Theta2 * a_2;
+a_3 = sigmoid(z_3);
 
-
-
-
+[maxX, index] = max(a_3, [], 1);
+p = index';
 
 % =========================================================================
 

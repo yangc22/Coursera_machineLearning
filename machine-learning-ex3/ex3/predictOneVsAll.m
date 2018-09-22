@@ -30,7 +30,12 @@ X = [ones(m, 1) X];
 %       for each row.
 %       
 
-
+% compute the probability for each class
+% X : m x (n + 1)
+% all_theta : num_labels : (n + 1)
+pro = sigmoid(X * all_theta');
+[max_pro, index] = max(pro, [], 2);
+p = index;
 
 
 

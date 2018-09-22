@@ -36,8 +36,16 @@ grad = zeros(size(theta));
 %           grad = grad + YOUR_CODE_HERE (using the temp variable)
 %
 
+% compute h(x) first which is the probability output
+h = sigmoid(X * theta);
+J = - (y .* log(h) + (1 - y) .* log(1 - h));
+J = sum(J) / m;
+J = J + lambda * sum(theta(2 : end).^2) / (2 * m);
 
-
+grad = X' * (h - y) / m;
+temp = lambda * theta / m;
+temp(1) = 0;
+grad = grad + temp;
 
 
 
